@@ -32,6 +32,14 @@ app.controller('serviceCtrl', function ($scope, $location, $http, $timeout, $hex
     }, function errorCallback(response) {
         $scope.httpErrorData = "error"
     })
+
+    $http.get('/content/customerdata.js').then(function (response) {
+        $scope.customerData = response.data.records
+    })
+
+    $scope.names = ["Jon", "Snow", "Paul", "Walker"];
+
+    $scope.customerDetail = { Name : "Nitish", City: "Bhopal", Car: "Dodge Viper" };
 });
 app.directive('myDirtv', function () {
     return {

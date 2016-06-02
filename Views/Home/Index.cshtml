@@ -21,6 +21,14 @@
         .strongBoldBreak {
             font-size: xx-large;
         }
+
+        .odd {
+            color: red;
+        }
+
+        .even {
+            color: blue;
+        }
     </style>
 </head>
 <body>
@@ -160,6 +168,64 @@
                         <td>{{httpSuccessStatusText }}</td>
                     </tr>
                 </table>
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                http service - json file - display customers - odd even table filters
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Country</th>
+                    </tr>
+                    <tr data-ng-repeat="customer in customerData | orderBy: 'Name'">
+                        <td data-ng-if="$odd" style="background-color: yellow">{{$index + 1}}</td>
+                        <td data-ng-if="$even">{{$index + 1}}</td>
+
+                        <td data-ng-if="$odd" style="background-color: yellow">{{customer.Name | titleCaseFormatter }}</td>
+                        <td data-ng-if="$even">{{customer.Name | titleCaseFormatter }}</td>
+
+                        <td data-ng-if="$odd" style="background-color: yellow">{{customer.City}}</td>
+                        <td data-ng-if="$even">{{customer.City}}</td>
+
+                        <td data-ng-if="$odd" style="background-color: yellow">{{customer.Country}}</td>
+                        <td data-ng-if="$even">{{customer.Country}}</td>
+                    </tr>
+                </table>
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                http service - json file - display customers - odd even <strong>ngClasses</strong>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Country</th>
+                    </tr>
+                    <tr data-ng-repeat="customer in customerData | orderBy: 'Name'">
+                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{$index + 1}}</td>
+                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Name | titleCaseFormatter}}</td>
+                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.City}}</td>
+                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Country}}</td>
+                    </tr>
+                </table>
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                select options - display data in dropdown - Simple Array
+                <select data-ng-model="selectedName" data-ng-options="x for x in names"></select>
+
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+
+                select options - display data in dropdown - Object Array
+                <select data-ng-model="selectedCustomer" data-ng-options="x.Name for x in customerData"></select>
+                <span>Selected Customer : {{selectedCustomer.Name + ', from ' + selectedCustomer.City}}</span>
+
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+
+                select options - display data in dropdown - Plain Object
+                <select data-ng-model="selectedCustomerDetail" data-ng-options="y for (x, y) in customerDetail"></select>
+                <span>Selected Customer : {{selectedCustomerDetail}}</span>
+
                 <br />
                 <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             </div>

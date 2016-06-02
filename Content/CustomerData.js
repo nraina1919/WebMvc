@@ -1,7 +1,7 @@
 ﻿{
   "records": [
     {
-      "Name": "Alfreds Futterkiste",
+      "Name": "alfreds Futterkiste",
       "City": "Berlin",
       "Country": "Germany"
     },
