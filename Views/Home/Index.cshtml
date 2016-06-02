@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Index";
+        //Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+            $scope.itemprice = 2
+            $scope.itemquantity = 3
+            $scope.mtname = "carl"
+            $scope.mtClick = function () {
+                $scope.person.name = "lol"
+            }
+        });
+        app.controller('ctrl2', function ($scope) {
+            $scope.mtname = "johnson"
+        });
+        app.directive('myDirtv', function () {
+            return {
+                template: "<h2>hello directive</h2>"
+            }
+        });
+        app.run(function ($rootScope) {
+            $rootScope.fname = "JON SNOW"
+            $rootScope.names = [{ name: 'Nitish', country: 'India' }, { name: 'Jon Snow', country: 'The Wall' }];
+            $rootScope.paisa = 50
+        });
+    </script>
+    <style type="text/css">
+        #mtx.ng-invalid {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div data-ng-app="myApp">
+        <div data-ng-controller="myCtrl" data-ng-init="colorVariant='red';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
+            <p><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</p>
+            <span style="color: {{colorVariant}}">First Name</span>:
+        <input type="text" ng-model="firstName"><br>
+            <span style="color: {{colorVariant}}">Last Name</span>:
+        <input type="text" ng-model="lastName"><br>
+            <span style="color: {{colorVariant}}">Full Name</span>: {{firstName + " " + lastName}}
+        <br>
+            <br>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            Color:
+        <input type="text" ng-model="colorVariant" />
+            <br />
+            Color chose : {{colorVariant}}
+
+        <br />
+            <strong>----------------------------------------------------------</strong><br />
+            {{quantity}} * {{cost}} = {{quantity * cost}}
+        <br />
+            <strong>----------------------------------------------------------</strong><br />
+            object use : {{person.name}} {{person.lastname}}
+        <br />
+            <strong>----------------------------------------------------------</strong><br />
+            quantity:<input type="number" data-ng-model="itemquantity" min="0" />
+            price:<input type="number" data-ng-model="itemprice" min="0" />
+            total : <span>{{itemquantity * itemprice}}</span>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            repeat dir:
+        <span>
+            <li data-ng-repeat="x in names">name : {{x}}
+            </li>
+        </span>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            custom - directive:
+        <div>
+            <my-dirtv></my-dirtv>
+        </div>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            model - two way binding
+        <div>
+            <input type="text" data-ng-model="mtname" />
+            your name : {{mtname}} - variable mtname
+        </div>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            validation check valid state
+        <div>
+            Enter name:
+            <input id="mtx" type="text" data-ng-model="mtx" required />
+        </div>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+            ng-click - controller change data
+        <div>
+            click ->
+            <h1 data-ng-click="mtClick()">{{person.name}}</h1>
+        </div>
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+
+
+
+            <br />
+            <strong>----------------------------------------------------------</strong><br />
+        </div>
+        <div data-ng-controller="ctrl2">
+            second controller - variable mtname : {{mtname}}<br />
+            <strong>----------------------------------------------------------</strong><br />
+        </div>
+        <div>
+            Root Scope data - name variable - fname -> {{fname}}<br />
+            <strong>----------------------------------------------------------</strong><br />
+        </div>
+        <div>
+            Filters - added with '|' pipe sign
+            <br /><strong>----------------------------------------------------------</strong><br />
+            lowercase : firstname | lowercase -> {{fname | lowercase}}
+            <br /><strong>----------------------------------------------------------</strong><br />
+            uppercase : firstname | lowercase -> {{fname | uppercase}}
+            <br /><strong>----------------------------------------------------------</strong><br />
+            orderBy:
+            <li data-ng-repeat="x in names | orderBy:'name'">
+                {{ x.name + ', ' + x.country }}
+            </li>
+            <br /><strong>----------------------------------------------------------</strong><br />
+            currency:
+            <input type="number" data-ng-model="paisa" /><span>{{paisa | currency}}</span>
+            <br /><strong>----------------------------------------------------------</strong><br />
+            <input type="text" data-ng-model="filterName" />
+            <li data-ng-repeat="x in names | filter:filterName">
+                {{ x.name + ', ' + x.country }}
+            </li>
+            <br /><strong>----------------------------------------------------------</strong><br />
+        </div>
+
+    </div>
+</body>
+</html>
