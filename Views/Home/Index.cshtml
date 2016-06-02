@@ -12,139 +12,158 @@
     <title>@ViewBag.Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function ($scope) {
-            $scope.firstName = "John";
-            $scope.lastName = "Doe";
-            $scope.itemprice = 2
-            $scope.itemquantity = 3
-            $scope.mtname = "carl"
-            $scope.mtClick = function () {
-                $scope.person.name = "lol"
-            }
-        });
-        app.controller('ctrl2', function ($scope) {
-            $scope.mtname = "johnson"
-        });
-        app.directive('myDirtv', function () {
-            return {
-                template: "<h2>hello directive</h2>"
-            }
-        });
-        app.run(function ($rootScope) {
-            $rootScope.fname = "JON SNOW"
-            $rootScope.names = [{ name: 'Nitish', country: 'India' }, { name: 'Jon Snow', country: 'The Wall' }];
-            $rootScope.paisa = 50
-        });
-    </script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Scripts/angularjsUtility.js")"></script>
     <style type="text/css">
         #mtx.ng-invalid {
             background-color: lightblue;
+        }
+
+        .strongBoldBreak {
+            font-size: xx-large;
         }
     </style>
 </head>
 <body>
     <div data-ng-app="myApp">
-        <div data-ng-controller="myCtrl" data-ng-init="colorVariant='red';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
-            <p><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</p>
+        <h1><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</h1>
+        <h2>Angular Js Start - learn controller, init, expression, custom directives, click-events</h2>
+        <div data-ng-controller="myCtrl" data-ng-init="colorVariant='black';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
             <span style="color: {{colorVariant}}">First Name</span>:
         <input type="text" ng-model="firstName"><br>
             <span style="color: {{colorVariant}}">Last Name</span>:
         <input type="text" ng-model="lastName"><br>
             <span style="color: {{colorVariant}}">Full Name</span>: {{firstName + " " + lastName}}
-        <br>
-            <br>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             Color:
         <input type="text" ng-model="colorVariant" />
             <br />
             Color chose : {{colorVariant}}
-
         <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             {{quantity}} * {{cost}} = {{quantity * cost}}
         <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             object use : {{person.name}} {{person.lastname}}
         <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             quantity:<input type="number" data-ng-model="itemquantity" min="0" />
             price:<input type="number" data-ng-model="itemprice" min="0" />
             total : <span>{{itemquantity * itemprice}}</span>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             repeat dir:
         <span>
             <li data-ng-repeat="x in names">name : {{x}}
             </li>
         </span>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             custom - directive:
-        <div>
             <my-dirtv></my-dirtv>
-        </div>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             model - two way binding
-        <div>
             <input type="text" data-ng-model="mtname" />
             your name : {{mtname}} - variable mtname
-        </div>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             validation check valid state
-        <div>
             Enter name:
             <input id="mtx" type="text" data-ng-model="mtx" required />
-        </div>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             ng-click - controller change data
-        <div>
             click ->
-            <h1 data-ng-click="mtClick()">{{person.name}}</h1>
-        </div>
+            <span data-ng-click="mtClick()">{{person.name}}</span>
             <br />
-            <strong>----------------------------------------------------------</strong><br />
-
-
-
-            <br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
+        <h2>Angular Js another controller</h2>
         <div data-ng-controller="ctrl2">
             second controller - variable mtname : {{mtname}}<br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
+        <h2>Angular Js Root Scope Object</h2>
         <div>
             Root Scope data - name variable - fname -> {{fname}}<br />
-            <strong>----------------------------------------------------------</strong><br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
+        <h2>Angular Js - filters, services</h2>
         <div>
-            Filters - added with '|' pipe sign
-            <br /><strong>----------------------------------------------------------</strong><br />
-            lowercase : firstname | lowercase -> {{fname | lowercase}}
-            <br /><strong>----------------------------------------------------------</strong><br />
-            uppercase : firstname | lowercase -> {{fname | uppercase}}
-            <br /><strong>----------------------------------------------------------</strong><br />
-            orderBy:
-            <li data-ng-repeat="x in names | orderBy:'name'">
-                {{ x.name + ', ' + x.country }}
+            <div data-ng-controller="serviceCtrl">
+                Filters - added with '|' pipe sign
+            <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                lowercase : firstname | lowercase -> {{fname | lowercase}}
+            <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                uppercase : firstname | lowercase -> {{fname | uppercase}}
+            <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                orderBy:
+            <li data-ng-repeat="x in names | orderBy:'name'">{{ x.name + ', ' + x.country }}
             </li>
-            <br /><strong>----------------------------------------------------------</strong><br />
-            currency:
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                currency:
             <input type="number" data-ng-model="paisa" /><span>{{paisa | currency}}</span>
-            <br /><strong>----------------------------------------------------------</strong><br />
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                filter with user input
             <input type="text" data-ng-model="filterName" />
-            <li data-ng-repeat="x in names | filter:filterName">
-                {{ x.name + ', ' + x.country }}
-            </li>
-            <br /><strong>----------------------------------------------------------</strong><br />
-        </div>
+                <li data-ng-repeat="x in names | filter:filterName">{{ x.name + ', ' + x.country }}
+                </li>
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                location service - variable myUrl -
+            {{myUrl}}
+            <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                http service and timeout service - variable htmlData -
+                {{htmlData}}
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                custom service - conversion to hexa -
+                {{hex}}
 
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                hexadecimal filter with custom service -
+                {{255 | hexFormatter}}
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                titleCase filter with custom service -
+                {{"I WAS IN LOWER CASE" | titleCaseFormatter}}
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                http service - long method - 
+                {{httpSuccessData}}
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+                http service  - response properties
+                <table>
+                    <tr>
+                        <td>httpSuccessConfig</td>
+                        <td>{{httpSuccessConfig}}</td>
+                    </tr>
+                    <tr>
+                        <td>httpSuccessHeaders</td>
+                        <td>{{httpSuccessHeaders}}</td>
+                    </tr>
+                    <tr>
+                        <td>httpSuccessStatus</td>
+                        <td>{{httpSuccessStatus}}</td>
+                    </tr>
+                    <tr>
+                        <td>httpSuccessStatusText</td>
+                        <td>{{httpSuccessStatusText }}</td>
+                    </tr>
+                </table>
+                <br />
+                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            </div>
+        </div>
     </div>
 </body>
 </html>
