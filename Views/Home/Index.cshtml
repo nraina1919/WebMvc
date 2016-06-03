@@ -12,7 +12,10 @@
     <title>@ViewBag.Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Scripts/angularjsApp.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Scripts/angularjsController.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/Scripts/angularjsUtility.js")"></script>
+
     <style type="text/css">
         #mtx.ng-invalid {
             background-color: lightblue;
@@ -32,10 +35,10 @@
     </style>
 </head>
 <body>
-    <div data-ng-app="myApp">
+    <div id="myAppContainer" data-ng-app="myApp" data-ng-init="colorVariant='black';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
         <h1><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</h1>
-        <h2>Angular Js Start - learn controller, init, expression, custom directives, click-events</h2>
-        <div data-ng-controller="myCtrl" data-ng-init="colorVariant='black';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
+        <h2>Angular Js - Start - learn controller, init, expression, custom directives, click-events</h2>
+        <div data-ng-controller="myCtrl">
             <span style="color: {{colorVariant}}">First Name</span>:
         <input type="text" ng-model="firstName"><br>
             <span style="color: {{colorVariant}}">Last Name</span>:
@@ -87,69 +90,68 @@
             <br />
             <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
-        <h2>Angular Js another controller</h2>
+        <h2>Angular Js - another controller</h2>
         <div data-ng-controller="ctrl2">
             second controller - variable mtname : {{mtname}}<br />
             <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
-        <h2>Angular Js Root Scope Object</h2>
+        <h2>Angular Js - Root Scope Object</h2>
         <div>
             Root Scope data - name variable - fname -> {{fname}}<br />
             <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
         </div>
         <h2>Angular Js - filters, services</h2>
-        <div>
-            <div data-ng-controller="serviceCtrl">
-                Filters - added with '|' pipe sign
+        <div data-ng-controller="serviceCtrl">
+            Filters - added with '|' pipe sign
             <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                lowercase : firstname | lowercase -> {{fname | lowercase}}
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            lowercase : firstname | lowercase -> {{fname | lowercase}}
             <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                uppercase : firstname | lowercase -> {{fname | uppercase}}
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            uppercase : firstname | lowercase -> {{fname | uppercase}}
             <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                orderBy:
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            orderBy:
             <li data-ng-repeat="x in names | orderBy:'name'">{{ x.name + ', ' + x.country }}
             </li>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                currency:
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            currency:
             <input type="number" data-ng-model="paisa" /><span>{{paisa | currency}}</span>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                filter with user input
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            filter with user input
             <input type="text" data-ng-model="filterName" />
-                <li data-ng-repeat="x in names | filter:filterName">{{ x.name + ', ' + x.country }}
-                </li>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                location service - variable myUrl -
+            <li data-ng-repeat="x in names | filter:filterName">{{ x.name + ', ' + x.country }}
+            </li>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            location service - variable myUrl -
             {{myUrl}}
             <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                http service and timeout service - variable htmlData -
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            http service and timeout service - variable htmlData -
                 {{htmlData}}
                 <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                custom service - conversion to hexa -
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            custom service - conversion to hexa -
                 {{hex}}
 
                 <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                hexadecimal filter with custom service -
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            hexadecimal filter with custom service -
                 {{255 | hexFormatter}}
                 <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                titleCase filter with custom service -
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            titleCase filter with custom service -
                 {{"I WAS IN LOWER CASE" | titleCaseFormatter}}
                 <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                http service - long method - 
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            http service - long method - 
                 {{httpSuccessData}}
                 <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                http service  - response properties
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            http service  - response properties
                 <table>
                     <tr>
                         <td>httpSuccessConfig</td>
@@ -168,9 +170,9 @@
                         <td>{{httpSuccessStatusText }}</td>
                     </tr>
                 </table>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                http service - json file - display customers - odd even table filters
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            http service - json file - display customers - odd even table filters
                 <table>
                     <tr>
                         <th>Name</th>
@@ -191,45 +193,85 @@
                         <td data-ng-if="$even">{{customer.Country}}</td>
                     </tr>
                 </table>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                http service - json file - display customers - odd even <strong>ngClasses</strong>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Country</th>
-                    </tr>
-                    <tr data-ng-repeat="customer in customerData | orderBy: 'Name'">
-                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{$index + 1}}</td>
-                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Name | titleCaseFormatter}}</td>
-                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.City}}</td>
-                        <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Country}}</td>
-                    </tr>
-                </table>
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
-                select options - display data in dropdown - Simple Array
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            http service - json file - display customers - odd even <strong>ngClasses</strong>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                </tr>
+                <tr data-ng-repeat="customer in customerData | orderBy: 'Name'">
+                    <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{$index + 1}}</td>
+                    <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Name | titleCaseFormatter}}</td>
+                    <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.City}}</td>
+                    <td data-ng-class-odd="'odd'" data-ng-class-even="'even'">{{customer.Country}}</td>
+                </tr>
+            </table>
+        </div>
+        <h2>Angular Js - Dropdown</h2>
+        <div data-ng-controller="dropdownCtrl">
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            select options - display data in dropdown - Simple Array
                 <select data-ng-model="selectedName" data-ng-options="x for x in names"></select>
 
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
 
-                select options - display data in dropdown - Object Array
+            select options - display data in dropdown - Object Array
                 <select data-ng-model="selectedCustomer" data-ng-options="x.Name for x in customerData"></select>
-                <span>Selected Customer : {{selectedCustomer.Name + ', from ' + selectedCustomer.City}}</span>
+            <span>Selected Customer : {{selectedCustomer.Name + ', from ' + selectedCustomer.City}}</span>
 
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
 
-                select options - display data in dropdown - Plain Object
+            select options - display data in dropdown - Plain Object
                 <select data-ng-model="selectedCustomerDetail" data-ng-options="y for (x, y) in customerDetail"></select>
-                <span>Selected Customer : {{selectedCustomerDetail}}</span>
+            <span>Selected Customer : {{selectedCustomerDetail}}</span>
 
-                <br />
-                <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+        </div>
+        <h2>Angular Js - DOM</h2>
+        <div data-ng-controller="domController">
+            <strong>ngDisabled</strong>
+            <div>
+                <input type="checkbox" data-ng-model="isEnable" />
+                <input type="button" value="Check Me" data-ng-disabled="isEnable" />
+                {{isEnable}}
             </div>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>ngShow</strong>
+            <div>
+                <input type="checkbox" data-ng-model="isShow" />
+                Text - <span data-ng-show="isShow">On</span>
+                <span data-ng-show="!isShow">Off</span>
+                {{isShow}}
+            </div>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+        </div>
+        <h2>Angular Js - Events</h2>
+        <div data-ng-controller="eventController">
+            <strong>ng-mouse-over</strong>
+            <h3 data-ng-mousemove="count = count + 1">--hover mouse here--</h3>
+            {{count}}
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>ng-mouse-click, toggle</strong>
+            <input type="button" value="Click" data-ng-click="clickEventCounter()" />
+            {{eventCounter}}
+            <div data-ng-show="eventShowMe">Visible</div>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>$event</strong>
+            <div data-ng-mousemove ="showCor($event)">Mouse Over</div>
+            {{ x + ", " + y }}
         </div>
     </div>
+
 </body>
 </html>

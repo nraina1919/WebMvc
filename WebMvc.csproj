@@ -118,6 +118,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Scripts\angularjsApp.js" />
+    <Content Include="Content\Scripts\angularjsController.js" />
     <Content Include="Content\Scripts\angularjsUtility.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

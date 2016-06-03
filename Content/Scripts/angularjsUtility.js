@@ -1,46 +1,9 @@
-﻿var app = angular.module('myApp', []);
-app.controller('myCtrl', function ($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-    $scope.itemprice = 2
-    $scope.itemquantity = 3
-    $scope.mtname = "carl"
-    $scope.mtClick = function () {
-        $scope.person.name = "lol"
-    }
+﻿app.run(function ($rootScope) {
+    $rootScope.fname = "JON SNOW"
+    $rootScope.names = [{ name: 'Nitish', country: 'India' }, { name: 'Jon Snow', country: 'The Wall' }];
+    $rootScope.paisa = 50
 });
-app.controller('ctrl2', function ($scope) {
-    $scope.mtname = "johnson"
-});
-app.controller('serviceCtrl', function ($scope, $location, $http, $timeout, $hex) {
-    $scope.myUrl = $location.absUrl()
-    $http.get("/").then(function (response) {
-        $timeout(function () {
-            $scope.htmlData = "server response received"
-        }, 2000)
-    })
-    $scope.hex = $hex.convertToHex(255);
-    $http({
-        method: 'GET',
-        url: '/'
-    }).then(function successCallback(response) {
-        $scope.httpSuccessData = "success"
-        $scope.httpSuccessConfig = response.config;
-        $scope.httpSuccessHeaders = response.headers;
-        $scope.httpSuccessStatus = response.status;
-        $scope.httpSuccessStatusText = response.statusText;
-    }, function errorCallback(response) {
-        $scope.httpErrorData = "error"
-    })
 
-    $http.get('/content/customerdata.js').then(function (response) {
-        $scope.customerData = response.data.records
-    })
-
-    $scope.names = ["Jon", "Snow", "Paul", "Walker"];
-
-    $scope.customerDetail = { Name : "Nitish", City: "Bhopal", Car: "Dodge Viper" };
-});
 app.directive('myDirtv', function () {
     return {
         template: "<h4>hello directive</h4>"
@@ -59,16 +22,12 @@ app.service('$convert', function () {
     }
 })
 
-app.run(function ($rootScope) {
-    $rootScope.fname = "JON SNOW"
-    $rootScope.names = [{ name: 'Nitish', country: 'India' }, { name: 'Jon Snow', country: 'The Wall' }];
-    $rootScope.paisa = 50
-});
 app.filter('hexFormatter', ['$hex', function ($hex) {
     return function (input) {
         return $hex.convertToHex(input);
     }
 }]);
+
 app.filter('titleCaseFormatter', ['$convert', function ($convert) {
     return function (input) {
         return $convert.toTitleCase(input);
