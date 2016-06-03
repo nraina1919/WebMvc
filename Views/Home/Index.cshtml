@@ -272,7 +272,7 @@
             {{ x + ", " + y }}
         </div>
         <h2>Angular Js - Form</h2>
-        <div>
+        <div data-ng-controller="formController">
             <strong>radio button using ngIF and ngShow and ngSwitch</strong>
             <form>
                 Pick a topic:
@@ -297,7 +297,26 @@
                     <span data-ng-switch-when="cars">Car Selected</span>
                 </span>
             </form>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <div>
+                <strong>form-example</strong>
+                <form>
+                    First name:<br />
+                    <input type="text" data-ng-model="user.firstName" /><br />
+                    Last name:<br />
+                    <input type="text" data-ng-model="user.lastName" />
+                    <br />
+                    <input type="button" value="Reset" data-ng-click="reset()" />
+                    <br />
+                    user input : {{user.firstName + " " + user.lastName}}
+                    <br />
+                    original user data : {{masterUser.firstName + " " + masterUser.lastName}}
+                </form>
+            </div>
         </div>
+        <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
     </div>
 
 </body>

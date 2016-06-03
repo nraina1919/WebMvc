@@ -65,3 +65,11 @@ app.controller('eventController', function ($scope) {
         $scope.y = event.clientY;
     }
 })
+
+app.controller('formController', function ($scope) {
+    $scope.masterUser = { firstName: 'Nitish', lastName: 'Raina' }
+    $scope.reset = function () {
+        $scope.user = angular.copy($scope.masterUser);
+    }
+    $scope.reset()
+})
