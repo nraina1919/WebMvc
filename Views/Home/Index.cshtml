@@ -34,10 +34,10 @@
         }
     </style>
 </head>
-<body>
-    <div id="myAppContainer" data-ng-app="myApp" data-ng-init="colorVariant='black';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
+<body data-ng-app="myApp" data-ng-init="colorVariant='black';quantity=3;cost=4;person={ name:'paul', lastname:'walker' };names=['jon','snow','lord']">
+    <div id="myAppContainer">
         <h1><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</h1>
-        <h2>Angular Js - Start - learn controller, init, expression, custom directives, click-events</h2>
+        <h2>Angular Js - Start - learn controller, init, expression, custom directives, ngRepeat, click-events</h2>
         <div data-ng-controller="myCtrl">
             <span style="color: {{colorVariant}}">First Name</span>:
         <input type="text" ng-model="firstName"><br>
@@ -268,8 +268,35 @@
             <br />
             <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
             <strong>$event</strong>
-            <div data-ng-mousemove ="showCor($event)">Mouse Over</div>
+            <div data-ng-mousemove="showCor($event)">Mouse Over</div>
             {{ x + ", " + y }}
+        </div>
+        <h2>Angular Js - Form</h2>
+        <div>
+            <strong>radio button using ngIF and ngShow and ngSwitch</strong>
+            <form>
+                Pick a topic:
+                    <input type="radio" data-ng-model="formRadioVar" value="dogs">Dogs
+                    <input type="radio" data-ng-model="formRadioVar" value="tuts">Tutorials
+                    <input type="radio" data-ng-model="formRadioVar" value="cars">Cars
+                <br />
+                ng-if-
+                <span data-ng-show="formRadioVar=='dogs'">Dog Selected</span>
+                <span data-ng-show="formRadioVar=='tuts'">Tuts Selected</span>
+                <span data-ng-show="formRadioVar=='cars'">Car Selected</span>
+                <br />
+                ng-show-
+                <span data-ng-if="formRadioVar=='dogs'">Dog Selected</span>
+                <span data-ng-if="formRadioVar=='tuts'">Tuts Selected</span>
+                <span data-ng-if="formRadioVar=='cars'">Car Selected</span>
+                <br />
+                ng-switch-
+                <span data-ng-switch="formRadioVar">
+                    <span data-ng-switch-when="dogs">Dog Selected</span>
+                    <span data-ng-switch-when="tuts">Tuts Selected</span>
+                    <span data-ng-switch-when="cars">Car Selected</span>
+                </span>
+            </form>
         </div>
     </div>
 
