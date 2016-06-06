@@ -73,3 +73,18 @@ app.controller('formController', function ($scope) {
     }
     $scope.reset()
 })
+
+app.controller('formValidateController', function ($scope) {
+    
+})
+
+app.controller('apiController', function ($scope) {
+    $scope.name = 'Nitish'
+    $scope.num1 = 2
+    $scope.num2 = 'test'
+    $scope.lowername = angular.lowercase($scope.name)
+    $scope.uppername = angular.uppercase($scope.name)
+    $scope.numResult1 = angular.isNumber($scope.num1)
+    $scope.numResult2 = angular.isNumber($scope.num2)
+    $scope.numResult3 = angular.isString($scope.num2)
+})

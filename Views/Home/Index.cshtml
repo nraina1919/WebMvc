@@ -315,8 +315,62 @@
                 </form>
             </div>
         </div>
-        <br />
+        <h2>Angular Js - Validation</h2>
+        <div data-ng-controller="formValidateController">
+            <strong>validation attribute : required</strong>
+            <form name="formValidate">
+                <input type="text" name="formValidateName" data-ng-model="formValidateName" required placeholder="text validation" />
+                <span>Valid : {{formValidate.formValidateName.$valid}}</span>
+            </form>
+            <br />
             <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>validation attribute : email </strong>
+            <form name="formEmailValidate">
+                <input type="email" data-ng-model="userEmail" name="userEmail" />
+                <span>Valid : {{formEmailValidate.userEmail.$valid}}</span>
+            </form>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>validation states for Form and Inputs - touched state, place cursor and left</strong>
+            <form name="CustomerForm">
+                Name<br />
+                <input type="text" data-ng-model="CustomerFormName" name="CustomerFormName" required /><span data-ng-show="CustomerForm.CustomerFormName.$touched && CustomerForm.CustomerFormName.$invalid">Name is required.</span><br />
+                Address<br />
+                <input type="text" name="CustomerFormAddress" />
+            </form>
+            <br />
+            <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+            <strong>form validation - example</strong>
+            <form name="UserForm" novalidate>
+                Name:<br />
+                <input type="text" name="UserName" data-ng-model="UserName" required /><span style="color: red;" data-ng-show="UserForm.UserName.$error.required">Name is required</span><br />
+                Email:<br />
+                <input type="email" name="UserEmail" data-ng-model="UserEmail" required /><span style="color: red;" data-ng-show="UserForm.UserEmail.$error.required">Email is required</span>
+                <span style="color: red;" data-ng-show="UserForm.UserEmail.$error.email">Invalid Email</span><br />
+                <input type="submit" value="Submit" data-ng-disabled="UserForm.$dirty && UserForm.$invalid" />
+            </form>
+        </div>
+        <br />
+        <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+        <h2>Angular Js - Global API</h2>
+        <div data-ng-controller="apiController">
+            <strong>angular.lowercase()</strong>
+            name - {{name}} in lowercase - {{lowername}}
+            <br />
+            <strong>angular.uppercase()</strong>
+            name - {{name}} in uppercase - {{uppername}}
+            <br />
+            <strong>angular.isNumber()</strong>
+            number - {{num1}} is number - {{numResult1}}
+            <br />
+            number - {{num2}} is number - {{numResult2}}
+            <br />
+            <strong>angular.isString()</strong>
+            number - {{num2}} is string - {{numResult3}}
+        </div>
+        <br />
+        <strong class="strongBoldBreak">----------------------------------------------------------</strong><br />
+
     </div>
 
 </body>
